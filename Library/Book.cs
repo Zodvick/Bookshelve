@@ -1,6 +1,6 @@
 ﻿namespace Library;
 
-public class Books
+public class Book
 {
     // private fields
     private string _title;
@@ -10,7 +10,7 @@ public class Books
     private int _isbn;
     
     //constructor
-    public Books(string title, string author, int pages, int year, int isbn)
+    public Book(string title, string author, int pages, int year, int isbn)
     {
         _title = title;
         _author = author;
@@ -98,13 +98,5 @@ public class Books
             return true;
         }
         return false;
-    }
-
-    public static void DisplayComments(string[] comments)
-    {
-        for (int i = 0; i < comments.Length; i++)
-        {
-            Console.WriteLine(comments[i]);
-        }
     }
 }
