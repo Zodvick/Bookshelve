@@ -24,9 +24,14 @@
             
             books[1].DeleteComments(1);
             
-            books[0].ReadComments();
-            books[1].ReadComments();
-            books[2].ReadComments();
+            for (int i = 0; i < books.Length; i++)
+            {
+                Console.WriteLine($"Книга: {books[i].Title}");
+                string[] commentsForDisplay = books[i].ReadComments();
+                Books.DisplayComments(commentsForDisplay);
+                Console.WriteLine();
+                
+            }
         }
     }
 }

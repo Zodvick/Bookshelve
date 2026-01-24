@@ -45,22 +45,33 @@ public class Books
         get { return _isbn; }
     }
 
+    public string[] Comments
+    {
+        get { return _comments; }
+    }
+
     //Create a comment
     private string[] _comments = new string[5];
     private int _commentCount = 0;
-    public void CreateComments(string comments)
+    public void CreateComments(string comment)
     {
-        _comments[_commentCount] = comments;
+        if (_commentCount >= _comments.Length)
+        {
+            Array.Resize(ref _comments, _comments.Length + 5);
+        }
+        _comments[_commentCount] = comment;
         _commentCount++;
     }
     
     //Read the comments
-    public void ReadComments()
+    public string[] ReadComments()
     {
+        string[] newComments = new string[_commentCount];
         for (int i = 0; i < _commentCount; i++)
         {
-            Console.WriteLine($"Read the comment: {_comments[i]}");
+            newComments[i] = _comments[i];
         }
+        return newComments;
     }
     
     //Updating comments
@@ -87,5 +98,13 @@ public class Books
             return true;
         }
         return false;
+    }
+
+    public static void DisplayComments(string[] comments)
+    {
+        for (int i = 0; i < comments.Length; i++)
+        {
+            Console.WriteLine(comments[i]);
+        }
     }
 }
