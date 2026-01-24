@@ -16,6 +16,13 @@
             books[1].CreateComments("I don't like it");
             books[2].CreateComments("I am like this book");
             books[2].CreateComments("complete nonsense");
+
+            if (books[2].UpdateComments(1, "OMG"))
+            {
+                Console.WriteLine("Comment updated");
+            }
+            
+            books[1].DeleteComments(1);
             
             books[0].ReadComments();
             books[1].ReadComments();

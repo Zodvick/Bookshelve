@@ -57,12 +57,6 @@ public class Books
     //Read the comments
     public void ReadComments()
     {
-        if (_commentCount == 0)
-        {
-            Console.WriteLine("No comments found!");
-            return;
-        }
-
         for (int i = 0; i < _commentCount; i++)
         {
             Console.WriteLine($"Read the comment: {_comments[i]}");
@@ -70,23 +64,28 @@ public class Books
     }
     
     //Updating comments
-    public void UpdateComments(int index, string comments)
+    public bool UpdateComments(int index, string comments)
     {
-        for (int i = 0; i < _commentCount; i++)
-        {
-            if (index >= 0 && index < _comments.Length)
+            if (index >= 0 && index < _commentCount)
             {
-                _comments[i] = comments;
+                _comments[index] = comments;
+                return true;
             }
-        }
+            return false;
     }
     
     //Deleting comments
-    public void DeleteComments(int index)
+    public bool DeleteComments(int index)
     {
         if (index >= 0 && index < _comments.Length)
         {
-            _comments[index] = null;
+            for (int i = 0; i < _commentCount; i++)
+            {
+                _comments[i] = _comments[i + 1];
+            }
+            _commentCount--;
+            return true;
         }
+        return false;
     }
 }
