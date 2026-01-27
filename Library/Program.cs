@@ -35,6 +35,27 @@
                 }
 
             }
+            
+            BookStore bookStoreInSpanish = new BookStore();
+            bookStoreInSpanish.CreateBook(books[0]);
+            bookStoreInSpanish.CreateBook(books[1]);
+            BookStore bookStoreInBritish = new BookStore();
+            bookStoreInBritish.CreateBook(books[0]);
+            bookStoreInBritish.CreateBook(books[1]);
+
+            bookStoreInBritish.UpdateBook(0, new Book("FirstBook", "Gazel", 231, 2000, 978054579));
+            bookStoreInBritish.UpdateBook(1, new Book("SecondBook", "Bob", 342, 1998, 978054579));
+            
+            bookStoreInSpanish.UpdateBook(0, new Book("ThirdBook", "Bob", 193, 2001, 978054579));
+            bookStoreInSpanish.UpdateBook(1, new Book("FourthBook", "Bob", 494, 2002, 978054579));
+            
+            bookStoreInBritish.DeleteBook(0);
+            
+            
+            bookStoreInBritish.SellBooks(0);
+            bookStoreInSpanish.SellBooks(1);
+            
+            
         }
     }
 }
