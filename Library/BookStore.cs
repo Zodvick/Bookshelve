@@ -2,16 +2,16 @@
 
 public class BookStore
 {
-    private Book[] assortmentOfBooks = new Book[5];
+    private Book[] _assortmentOfBooks = new Book[5];
     private int _bookCount = 0;
     
     public void CreateBook(Book book)
     {
-        if (_bookCount >= assortmentOfBooks.Length)
+        if (_bookCount >= _assortmentOfBooks.Length)
         {
-            Array.Resize(ref assortmentOfBooks, _bookCount * 2);
+            Array.Resize(ref _assortmentOfBooks, _bookCount * 2);
         }
-        assortmentOfBooks[_bookCount] = book;
+        _assortmentOfBooks[_bookCount] = book;
         _bookCount++;
     }
 
@@ -20,7 +20,7 @@ public class BookStore
         string[] newBooks = new string[_bookCount];
         for (int i = 0; i < _bookCount; i++)
         {
-            newBooks[i] =  assortmentOfBooks[i].Title;
+            newBooks[i] =  _assortmentOfBooks[i].Title;
         }
         return newBooks;
     }
@@ -29,7 +29,7 @@ public class BookStore
     {
         if (id >= 0 && id < _bookCount)
         {
-            assortmentOfBooks[id] = newBook;
+            _assortmentOfBooks[id] = newBook;
             return true;
         }
 
@@ -40,11 +40,12 @@ public class BookStore
     {
         if (id >= 0 && id < _bookCount)
         {
-            for (int i = 0; i < _bookCount; i++)
+            for (int i = id; i < _bookCount - 1; i++)
             {
-                assortmentOfBooks[i] = assortmentOfBooks[i + 1];
+                _assortmentOfBooks[i] = _assortmentOfBooks[i + 1];
             }
-            assortmentOfBooks[_bookCount - 1] = null;
+            _bookCount--;
+            _assortmentOfBooks[_bookCount] = null!;
             return true;
         }
         return false;
@@ -54,7 +55,7 @@ public class BookStore
     {
         if (id >= 0 && id < _bookCount)
         {
-            Console.WriteLine($"{assortmentOfBooks[id].Title} \nThe book is sold!");
+            Console.WriteLine($"{_assortmentOfBooks[id].Title} - {_assortmentOfBooks[id].Amount} \nThe book is sold!");
             DeleteBook(id);
         }
         else

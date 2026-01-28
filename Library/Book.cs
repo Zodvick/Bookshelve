@@ -7,16 +7,18 @@ public class Book
     private string _author;
     private int _pages;
     private int _year;
-    private int _isbn;
+    private decimal _price;
+    private int _amount;
     
     //constructor
-    public Book(string title, string author, int pages, int year, int isbn)
+    public Book(string title, string author, int pages, int year, decimal price, int amount)
     {
         _title = title;
         _author = author;
         _pages = pages;
         _year = year;
-        _isbn = isbn;
+        _price = price;
+        _amount = amount;
     }
     
     //Properties
@@ -40,9 +42,14 @@ public class Book
         get { return _year; }
     }
 
-    public int Isbn
+    public  decimal Price
     {
-        get { return _isbn; }
+        get { return _price; }
+    }
+
+    public int Amount
+    {
+        get { return _amount; }
     }
 
     public string[] Comments
@@ -88,13 +95,14 @@ public class Book
     //Deleting comments
     public bool DeleteComments(int index)
     {
-        if (index >= 0 && index < _comments.Length)
+        if (index >= 0 && index < _commentCount)
         {
-            for (int i = 0; i < _commentCount; i++)
+            for (int i = index; i < _commentCount - 1; i++)
             {
                 _comments[i] = _comments[i + 1];
             }
             _commentCount--;
+            _comments[_commentCount] = null!;
             return true;
         }
         return false;
