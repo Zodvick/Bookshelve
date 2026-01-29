@@ -9,7 +9,7 @@ public class Book
     private int _year;
     private decimal _price;
     private int _amount;
-    
+
     //constructor
     public Book(string title, string author, int pages, int year, decimal price, int amount)
     {
@@ -20,7 +20,7 @@ public class Book
         _price = price;
         _amount = amount;
     }
-    
+
     //Properties
     public string Title
     {
@@ -42,7 +42,7 @@ public class Book
         get { return _year; }
     }
 
-    public  decimal Price
+    public decimal Price
     {
         get { return _price; }
     }
@@ -60,16 +60,18 @@ public class Book
     //Create a comment
     private string[] _comments = new string[5];
     private int _commentCount = 0;
+
     public void CreateComments(string comment)
     {
         if (_commentCount >= _comments.Length)
         {
             Array.Resize(ref _comments, _comments.Length + 5);
         }
+
         _comments[_commentCount] = comment;
         _commentCount++;
     }
-    
+
     //Read the comments
     public string[] ReadComments()
     {
@@ -78,20 +80,22 @@ public class Book
         {
             newComments[i] = _comments[i];
         }
+
         return newComments;
     }
-    
+
     //Updating comments
     public bool UpdateComments(int index, string comments)
     {
-            if (index >= 0 && index < _commentCount)
-            {
-                _comments[index] = comments;
-                return true;
-            }
-            return false;
+        if (index >= 0 && index < _commentCount)
+        {
+            _comments[index] = comments;
+            return true;
+        }
+
+        return false;
     }
-    
+
     //Deleting comments
     public bool DeleteComments(int index)
     {
@@ -101,10 +105,12 @@ public class Book
             {
                 _comments[i] = _comments[i + 1];
             }
+
             _commentCount--;
             _comments[_commentCount] = null!;
             return true;
         }
+
         return false;
     }
 }

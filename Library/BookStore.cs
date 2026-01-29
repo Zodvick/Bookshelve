@@ -4,7 +4,8 @@ public class BookStore
 {
     private Book[] _assortmentOfBooks = new Book[5];
     private int _bookCount = 0;
-    
+    private decimal _price;
+    private int _amount;
     public void CreateBook(Book book)
     {
         if (_bookCount >= _assortmentOfBooks.Length)
@@ -15,14 +16,14 @@ public class BookStore
         _bookCount++;
     }
 
-    public string[] ReadBooks()
+    public int ReadBooks()
     {
-        string[] newBooks = new string[_bookCount];
+        int _total = 0;
         for (int i = 0; i < _bookCount; i++)
         {
-            newBooks[i] =  _assortmentOfBooks[i].Title;
+            _total += _assortmentOfBooks[i].Amount;
         }
-        return newBooks;
+        return _total;
     }
 
     public bool UpdateBook(int id, Book newBook)
@@ -55,7 +56,7 @@ public class BookStore
     {
         if (id >= 0 && id < _bookCount)
         {
-            Console.WriteLine($"{_assortmentOfBooks[id].Title} - {_assortmentOfBooks[id].Amount} \nThe book is sold!");
+            Console.WriteLine($"\nThe book is sold! \n{_assortmentOfBooks[id].Title} - {_assortmentOfBooks[id].Amount - 1}");
             DeleteBook(id);
         }
         else
@@ -63,4 +64,22 @@ public class BookStore
             Console.WriteLine("Book not found!");
         }
     }
+    
+    public void ChangePrice(int id, decimal newPrice)
+    {
+        if (newPrice > 0)
+        {
+            _price = newPrice;
+        }
+    }
+    
+    public void RefillStock(int id, int _bookCount)
+    {
+        if (_bookCount >= 0)
+        {
+            _amount += _bookCount;
+        }
+    }
+    
+    
 }
