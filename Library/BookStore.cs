@@ -4,7 +4,6 @@ public class BookStore
 {
     private Book[] _assortmentOfBooks = new Book[5];
     private int _bookCount = 0;
-    private decimal _price;
     private int _amount;
     public void CreateBook(Book book)
     {
@@ -16,32 +15,32 @@ public class BookStore
         _bookCount++;
     }
 
-    public int ReadBooks()
+    public string ReadBooks()
     {
-        int _total = 0;
+        int total = 0;
         for (int i = 0; i < _bookCount; i++)
-        {
-            _total += _assortmentOfBooks[i].Amount;
+        { 
+            total += _assortmentOfBooks[i].Amount;
         }
-        return _total;
+        return total.ToString();
     }
 
-    public bool UpdateBook(int id, Book newBook)
+    public bool UpdateBook(int index, Book newBook)
     {
-        if (id >= 0 && id < _bookCount)
+        if (index >= 0 && index < _bookCount)
         {
-            _assortmentOfBooks[id] = newBook;
+            _assortmentOfBooks[index] = newBook;
             return true;
         }
 
         return false;
     }
 
-    public bool DeleteBook(int id)
+    public bool DeleteBook(int index)
     {
-        if (id >= 0 && id < _bookCount)
+        if (index >= 0 && index < _bookCount)
         {
-            for (int i = id; i < _bookCount - 1; i++)
+            for (int i = index; i < _bookCount - 1; i++)
             {
                 _assortmentOfBooks[i] = _assortmentOfBooks[i + 1];
             }
@@ -52,34 +51,29 @@ public class BookStore
         return false;
     }
     
-    public void SellBooks(int id)
+    public bool SellBooks(int index)
     {
-        if (id >= 0 && id < _bookCount)
+        if (index >= 0 && index < _bookCount)
         {
-            Console.WriteLine($"\nThe book is sold! \n{_assortmentOfBooks[id].Title} - {_assortmentOfBooks[id].Amount - 1}");
-            DeleteBook(id);
+            _assortmentOfBooks[index].SellBooks(1);
+            return true;
         }
         else
         {
-            Console.WriteLine("Book not found!");
+            return false;
         }
     }
     
-    public void ChangePrice(int id, decimal newPrice)
+    public void ChangePrice(int index, decimal newPrice)
     {
-        if (newPrice > 0)
-        {
-            _price = newPrice;
-        }
+        _assortmentOfBooks[index].ChangePrice(newPrice);
     }
     
-    public void RefillStock(int id, int _bookCount)
+    public void RefillStock(int index, int bookCount)
     {
         if (_bookCount >= 0)
         {
             _amount += _bookCount;
         }
     }
-    
-    
 }

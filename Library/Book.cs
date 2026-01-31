@@ -113,4 +113,22 @@ public class Book
 
         return false;
     }
+    
+    public void ChangePrice(decimal newPrice)
+    {
+        if (newPrice > 0)
+        {
+            _price = newPrice;
+        }
+    }
+    
+    public void SellBooks(int amount)
+    {
+        _amount -= amount;
+    }
+    
+    public void RefillStock(int amount)
+    {
+        _amount += amount;
+    }
 }
